@@ -28,13 +28,29 @@ namespace CoursesAPI.Services.Services
 
 		/// <summary>
 		/// You should implement this function, such that all tests will pass.
+        /// Method that adds a teacher to a course with a given id.
+        /// The required attributes are given with a view model class.
 		/// </summary>
 		/// <param name="courseInstanceID">The ID of the course instance which the teacher will be registered to.</param>
 		/// <param name="model">The data which indicates which person should be added as a teacher, and in what role.</param>
 		/// <returns>Should return basic information about the person.</returns>
 		public PersonDTO AddTeacherToCourse(int courseInstanceID, AddTeacherViewModel model)
 		{
-			// TODO: implement this logic!
+            var course = _courseInstances.All().SingleOrDefault(x => x.ID == courseInstanceID);
+            var teacher = _teacherRegistrations.All().SingleOrDefault(x => x.SSN == model.SSN);
+			if(course == null || teacher == null)
+            {
+                throw new AppObjectNotFoundException();
+            }
+
+            /*
+            var mainTeacher = _teacherRegistrations.All().SingleOrDefault(x => x.CourseInstanceID == courseInstanceID && x.Type == TeacherType.MainTeacher);
+            if (mainTeacher != null)
+            {
+                throw new AppValidationException("COURSE_ALREADY_HAS_A_MAIN_TEACHER");
+            }
+            */
+
 			return null;
 		}
 
