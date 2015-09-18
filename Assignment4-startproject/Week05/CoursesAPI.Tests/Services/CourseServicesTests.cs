@@ -164,9 +164,23 @@ namespace CoursesAPI.Tests.Services
 		}
 
 		[TestMethod]
-        public void testasdasd1()
+        public void GetCoursesBySemester_ReturnsAllCoursesOnAGivenSemester()
         {
-            // todo
+            // Arrange:
+            const string SEMESTER1 = "20153";
+            const string SEMESTER2 = "20163";
+
+            // Act:
+            var result1 = _service.GetCourseInstancesBySemester(SEMESTER1);
+            var result2 = _service.GetCourseInstancesBySemester(SEMESTER2);
+            
+            // Assert: 
+            Assert.AreEqual(3, result1.Count);
+            Assert.AreNotEqual(2, result1.Count);
+            Assert.AreNotEqual(4, result1.Count);
+            Assert.AreEqual(1, result2.Count);
+            Assert.AreNotEqual(0, result2.Count);
+            Assert.AreNotEqual(2, result2.Count);
         }
 
         [TestMethod]
