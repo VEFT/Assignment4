@@ -25,6 +25,8 @@ namespace CoursesAPI.Tests.Services
 
 		private const int COURSEID_VEFT_20153 = 1337;
 		private const int COURSEID_VEFT_20163 = 1338;
+        private const int COURSEID_PROG_20153 = 1555;
+        private const int COURSEID_TGRA_20153 = 3333;
 		private const int INVALID_COURSEID    = 9999;
 
 		[TestInitialize]
@@ -63,7 +65,20 @@ namespace CoursesAPI.Tests.Services
 					CourseID    = "T-514-VEFT",
 					Description = "Í þessum áfanga verður fjallað um vefþj...",
 					Name        = "Vefþjónustur"
-				}
+				},
+                new CourseTemplate
+                {
+                    CourseID    = "T-111-PROG",
+                    Description = "Í þessum áfanga verður fjallað um grunngildi forr...",
+                    Name        = "Forritun"
+                },
+                new CourseTemplate
+                {
+                    CourseID    = "T-511-TGRA",
+                    Description = "Í þessum áfagna verður fjallað um tölvug...",
+                    Name        = "Tölvugrafík"
+
+                }
 			};
 			#endregion
 
@@ -81,7 +96,19 @@ namespace CoursesAPI.Tests.Services
 					ID         = COURSEID_VEFT_20163,
 					CourseID   = "T-514-VEFT",
 					SemesterID = "20163"
-				}
+				},
+                new CourseInstance
+                {
+                    ID         = COURSEID_PROG_20153,
+                    CourseID   = "T-111-PROG",
+                    SemesterID = "20153"
+                },
+                new CourseInstance
+                {
+                    ID         = COURSEID_TGRA_20153,
+                    CourseID   = "T-511-TGRA",
+                    SemesterID = "20153"
+                }
 			};
 			#endregion
 
@@ -118,7 +145,7 @@ namespace CoursesAPI.Tests.Services
 		{
             // Arrange:
             MockUnitOfWork<MockDataContext> _mockUnitOfWorkWithNoDataDefined = new MockUnitOfWork<MockDataContext>();
-            CoursesServiceProvider _serviceWithNoDataDefined = new CoursesServiceProvider(_mockUnitOfWork);
+            CoursesServiceProvider _serviceWithNoDataDefined = new CoursesServiceProvider(_mockUnitOfWorkWithNoDataDefined);
             const string SEMESTER = "20153";
 
 			// Act:
@@ -135,16 +162,16 @@ namespace CoursesAPI.Tests.Services
         }
 
         [TestMethod]
-        public void ble()
+        public void GetCoursesBySemester_WithNoSemesterDefined()
         {
-            // todo
-            // 
-            // todo
-            // todo
-            // todo
-            // todo
-            // todo
-            // todotodo
+            // Arrange:
+            const string SEMESTER = null;
+
+            // Act:
+            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+
+            // Assert:
+
         }
 
 		#endregion
