@@ -29,7 +29,15 @@ namespace CoursesAPI.Tests.Services
         private const int COURSEID_TGRA_20153 = 3333;
 		private const int INVALID_COURSEID    = 9999;
 
-		[TestInitialize]
+        private const string COURSE_TEMPLID_VEFT = "T-514-VEFT";
+        private const string COURSE_TEMPLID_PROG = "T-111-PROG";
+        private const string COURSE_TEMPLID_TGRA = "T-511-TGRA";
+
+        private const string COURSE_NAME_VEFT = "Vefþjónustur";
+        private const string COURSE_NAME_PROG = "Forritun";
+        private const string COURSE_NAME_TGRA = "Tölvugrafík";
+
+        [TestInitialize]
 		public void Setup()
 		{
 			_mockUnitOfWork = new MockUnitOfWork<MockDataContext>();
@@ -62,21 +70,21 @@ namespace CoursesAPI.Tests.Services
 			{
 				new CourseTemplate
 				{
-					CourseID    = "T-514-VEFT",
+					CourseID    = COURSE_TEMPLID_VEFT,
 					Description = "Í þessum áfanga verður fjallað um vefþj...",
-					Name        = "Vefþjónustur"
+					Name        = COURSE_NAME_VEFT
 				},
                 new CourseTemplate
                 {
-                    CourseID    = "T-111-PROG",
+                    CourseID    = COURSE_TEMPLID_PROG,
                     Description = "Í þessum áfanga verður fjallað um grunngildi forr...",
-                    Name        = "Forritun"
+                    Name        = COURSE_NAME_PROG
                 },
                 new CourseTemplate
                 {
-                    CourseID    = "T-511-TGRA",
+                    CourseID    = COURSE_TEMPLID_TGRA,
                     Description = "Í þessum áfagna verður fjallað um tölvug...",
-                    Name        = "Tölvugrafík"
+                    Name        = COURSE_NAME_TGRA
 
                 }
 			};
@@ -88,25 +96,25 @@ namespace CoursesAPI.Tests.Services
 				new CourseInstance
 				{
 					ID         = COURSEID_VEFT_20153,
-					CourseID   = "T-514-VEFT",
+					CourseID   = COURSE_TEMPLID_VEFT,
 					SemesterID = "20153"
 				},
 				new CourseInstance
 				{
 					ID         = COURSEID_VEFT_20163,
-					CourseID   = "T-514-VEFT",
+					CourseID   = COURSE_TEMPLID_VEFT,
 					SemesterID = "20163"
 				},
                 new CourseInstance
                 {
                     ID         = COURSEID_PROG_20153,
-                    CourseID   = "T-111-PROG",
+                    CourseID   = COURSE_TEMPLID_PROG,
                     SemesterID = "20153"
                 },
                 new CourseInstance
                 {
                     ID         = COURSEID_TGRA_20153,
-                    CourseID   = "T-511-TGRA",
+                    CourseID   = COURSE_TEMPLID_TGRA,
                     SemesterID = "20153"
                 }
 			};
@@ -171,7 +179,10 @@ namespace CoursesAPI.Tests.Services
             var result = _service.GetCourseInstancesBySemester(SEMESTER);
 
             // Assert:
-
+            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(COURSEID_VEFT_20153, result[0].CourseInstanceID);
+            Assert.AreEqual(COURSE_TEMPLID_VEFT, result[0].TemplateID);
+            Assert.AreEqual(COURSE_NAME_VEFT, result[0].Name);
         }
 
 		#endregion
