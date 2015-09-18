@@ -116,14 +116,21 @@ namespace CoursesAPI.Tests.Services
 		[TestMethod]
 		public void GetCoursesBySemester_ReturnsEmptyListWhenNoDataDefined()
 		{
-			// Arrange:
+            // Arrange:
+            const string SEMESTER = "20173";
 
 			// Act:
+            var result = _service.GetCourseInstancesBySemester(SEMESTER);
 
-			// Assert:
+            // Assert:
+            Assert.AreEqual(0, result.Count);
 		}
 
-		// TODO!!! you should write more unit tests here!!!
+		[TestMethod]
+        public void test1()
+        {
+            // todo
+        }
 
 		#endregion
 
