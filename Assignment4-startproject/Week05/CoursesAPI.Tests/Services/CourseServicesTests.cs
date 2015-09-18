@@ -117,10 +117,12 @@ namespace CoursesAPI.Tests.Services
 		public void GetCoursesBySemester_ReturnsEmptyListWhenNoDataDefined()
 		{
             // Arrange:
-            const string SEMESTER = "20173";
+            MockUnitOfWork<MockDataContext> _mockUnitOfWorkWithNoDataDefined = new MockUnitOfWork<MockDataContext>();
+            CoursesServiceProvider _serviceWithNoDataDefined = new CoursesServiceProvider(_mockUnitOfWork);
+            const string SEMESTER = "20153";
 
 			// Act:
-            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+            var result = _serviceWithNoDataDefined.GetCourseInstancesBySemester(SEMESTER);
 
             // Assert:
             Assert.AreEqual(0, result.Count);
