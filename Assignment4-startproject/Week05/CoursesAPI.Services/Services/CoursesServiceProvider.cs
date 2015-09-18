@@ -37,7 +37,7 @@ namespace CoursesAPI.Services.Services
 		public PersonDTO AddTeacherToCourse(int courseInstanceID, AddTeacherViewModel model)
 		{
             var course = _courseInstances.All().SingleOrDefault(x => x.ID == courseInstanceID);
-            var teacher = _teacherRegistrations.All().SingleOrDefault(x => x.SSN == model.SSN);
+            var teacher = _persons.All().SingleOrDefault(x => x.SSN == model.SSN);
 			if(course == null || teacher == null)
             {
                 throw new AppObjectNotFoundException();
@@ -46,16 +46,32 @@ namespace CoursesAPI.Services.Services
             var teacherInCourse = _teacherRegistrations.All().SingleOrDefault(x => x.CourseInstanceID == courseInstanceID && x.SSN == model.SSN);
             if(teacherInCourse != null)
             {
-
+                throw new AppValidationException("PERSON_ALREADY_REGISTERED_TEACHER_IN_COURSE");
             }
 
             var mainTeacher = _teacherRegistrations.All().SingleOrDefault(x => x.CourseInstanceID == courseInstanceID && x.Type == TeacherType.MainTeacher);
-            if (mainTeacher != null)
+            if (mainTeacher != null && model.Type == TeacherType.MainTeacher)
             {
                 throw new AppValidationException("COURSE_ALREADY_HAS_A_MAIN_TEACHER");
             }
 
-			return null;
+            TeacherRegistration tr = new TeacherRegistration
+            {
+                CourseInstanceID = courseInstanceID,
+                SSN = teacher.SSN,
+                Type = model.Type
+            };
+
+            _teacherRegistrations.Add(tr);
+            _uow.Save();
+
+            PersonDTO result = new PersonDTO
+            {
+                Name = teacher.Name,
+                SSN = teacher.SSN
+            };
+
+			return result;
 		}
 
 		/// <summary>
