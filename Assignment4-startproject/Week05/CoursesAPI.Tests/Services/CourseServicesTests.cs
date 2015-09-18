@@ -121,7 +121,7 @@ namespace CoursesAPI.Tests.Services
             CoursesServiceProvider _serviceWithNoDataDefined = new CoursesServiceProvider(_mockUnitOfWork);
             const string SEMESTER = "20153";
 
-            // Act:
+			// Act:
             var result = _serviceWithNoDataDefined.GetCourseInstancesBySemester(SEMESTER);
 
             // Assert:
@@ -129,6 +129,12 @@ namespace CoursesAPI.Tests.Services
 		}
 
 		[TestMethod]
+        public void testasdasd1()
+        {
+            // todo
+        }
+
+        [TestMethod]
         public void ble()
         {
             // todo
@@ -141,15 +147,15 @@ namespace CoursesAPI.Tests.Services
             // todotodo
         }
 
-        #endregion
+		#endregion
 
-        #region AddTeacher
+		#region AddTeacher
 
-        /// <summary>
-        /// Adds a main teacher to a course which doesn't have a
-        /// main teacher defined already (see test data defined above).
-        /// </summary>
-        [TestMethod]
+		/// <summary>
+		/// Adds a main teacher to a course which doesn't have a
+		/// main teacher defined already (see test data defined above).
+		/// </summary>
+		[TestMethod]
 		public void AddTeacher_WithValidTeacherAndCourse()
 		{
 			// Arrange:
