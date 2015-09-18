@@ -43,13 +43,17 @@ namespace CoursesAPI.Services.Services
                 throw new AppObjectNotFoundException();
             }
 
-            /*
+            var teacherInCourse = _teacherRegistrations.All().SingleOrDefault(x => x.CourseInstanceID == courseInstanceID && x.SSN == model.SSN);
+            if(teacherInCourse != null)
+            {
+
+            }
+
             var mainTeacher = _teacherRegistrations.All().SingleOrDefault(x => x.CourseInstanceID == courseInstanceID && x.Type == TeacherType.MainTeacher);
             if (mainTeacher != null)
             {
                 throw new AppValidationException("COURSE_ALREADY_HAS_A_MAIN_TEACHER");
             }
-            */
 
 			return null;
 		}
