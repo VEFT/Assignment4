@@ -22,8 +22,9 @@ namespace CoursesAPI.Tests.Services
 		private const string INVALID_SSN = "9876543210";
 
 		private const string NAME_GUNNA  = "Guðrún Guðmundsdóttir";
+        private const string NAME_DABS   = "Daníel B. Sigurgeirsson";
 
-		private const int COURSEID_VEFT_20153 = 1337;
+        private const int COURSEID_VEFT_20153 = 1337;
 		private const int COURSEID_VEFT_20163 = 1338;
         private const int COURSEID_PROG_20153 = 1555;
         private const int COURSEID_TGRA_20153 = 3333;
@@ -51,7 +52,7 @@ namespace CoursesAPI.Tests.Services
 				new Person
 				{
 					ID    = 1,
-					Name  = "Daníel B. Sigurgeirsson",
+					Name  = NAME_DABS,
 					SSN   = SSN_DABS,
 					Email = "dabs@ru.is"
 				},
@@ -136,7 +137,14 @@ namespace CoursesAPI.Tests.Services
 					CourseInstanceID = COURSEID_VEFT_20153,
 					SSN              = SSN_DABS,
 					Type             = TeacherType.MainTeacher
-				}
+				},
+                new TeacherRegistration
+                {
+                    ID               = 201,
+                    CourseInstanceID = COURSEID_TGRA_20153,
+                    SSN              = SSN_GUNNA,
+                    Type             = TeacherType.MainTeacher
+                }
 			};
 			#endregion
 
