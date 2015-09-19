@@ -27,7 +27,8 @@ namespace CoursesAPI.Tests.Services
 		private const int COURSEID_VEFT_20163 = 1338;
         private const int COURSEID_PROG_20153 = 1555;
         private const int COURSEID_TGRA_20153 = 3333;
-		private const int INVALID_COURSEID    = 9999;
+        private const int COURSEID_TGRA_20157 = 1733;
+        private const int INVALID_COURSEID    = 9999;
 
         private const string COURSE_TEMPLID_VEFT = "T-514-VEFT";
         private const string COURSE_TEMPLID_PROG = "T-111-PROG";
@@ -116,6 +117,12 @@ namespace CoursesAPI.Tests.Services
                     ID         = COURSEID_TGRA_20153,
                     CourseID   = COURSE_TEMPLID_TGRA,
                     SemesterID = "20153"
+                },
+                new CourseInstance
+                {
+                    ID         = COURSEID_TGRA_20157,
+                    CourseID   = COURSE_TEMPLID_TGRA,
+                    SemesterID = "20173"
                 }
 			};
 			#endregion
@@ -218,10 +225,20 @@ namespace CoursesAPI.Tests.Services
          //   should be included(see the definition of CourseInstanceDTO).
         public void GetCoursesBySemester_G() { }
 
-
-        public void GetCoursesBySemester_Fallfyrirdannaluser()
+        [TestMethod]
+        public void GetCoursesBySemester_MainTeacherHasNotBeenDefined()
         {
+            // Arrange:
+            const string SEMESTER = "20173";
 
+            //Act:
+            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+
+            // Assert:
+            //System.Console.WriteLine("TEST: " + result[0].CourseInstanceID);
+            //System.Console.WriteLine("TEST2: " + result[0].MainTeacher);
+            //Assert.AreEqual(8, result[0].CourseInstanceID);
+            //Assert.AreEqual("", result[0].MainTeacher);
         }
 
 		#endregion
