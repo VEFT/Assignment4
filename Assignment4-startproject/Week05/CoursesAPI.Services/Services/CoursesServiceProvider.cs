@@ -74,14 +74,13 @@ namespace CoursesAPI.Services.Services
 			return result;
 		}
 
-		/// <summary>
-		/// You should write tests for this function. You will also need to
-		/// modify it, such that it will correctly return the name of the main
-		/// teacher of each course.
-		/// </summary>
-		/// <param name="semester"></param>
-		/// <returns></returns>
-		public List<CourseInstanceDTO> GetCourseInstancesBySemester(string semester = null)
+        /// <summary>
+        /// Returns a list of courses belonging to a given semester.
+        /// If no semester is provided, the current semester will be used.
+        /// </summary>
+        /// <param name="semester">The semester</param>
+        /// <returns>List of courses</returns>
+        public List<CourseInstanceDTO> GetCourseInstancesBySemester(string semester = null)
 		{
 			if (string.IsNullOrEmpty(semester))
 			{
