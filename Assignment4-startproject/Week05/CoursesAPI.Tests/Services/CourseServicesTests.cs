@@ -225,8 +225,8 @@ namespace CoursesAPI.Tests.Services
             var result = _service.GetCourseInstancesBySemester(SEMESTER);
 
             //Assert:
-        }
 
+        }
 
         public void GetCoursesBySemester_Fallfyrirdannaluser()
         {
