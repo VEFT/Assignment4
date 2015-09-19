@@ -173,14 +173,20 @@ namespace CoursesAPI.Tests.Services
             // Act:
             var result1 = _service.GetCourseInstancesBySemester(SEMESTER1);
             var result2 = _service.GetCourseInstancesBySemester(SEMESTER2);
-            
+
             // Assert: 
+            // Assert that the function should return all courses
+            // on a given semester (no more, no less):
             Assert.AreEqual(3, result1.Count);
             Assert.AreNotEqual(2, result1.Count);
             Assert.AreNotEqual(4, result1.Count);
             Assert.AreEqual(1, result2.Count);
             Assert.AreNotEqual(0, result2.Count);
             Assert.AreNotEqual(2, result2.Count);
+            // Assert that the function actually returns the correct courses
+            Assert.AreEqual(COURSEID_VEFT_20163, result2[0].CourseInstanceID);
+            Assert.AreEqual(COURSE_TEMPLID_VEFT, result2[0].TemplateID);
+            Assert.AreEqual(COURSE_NAME_VEFT, result2[0].Name);
         }
 
         [TestMethod]
