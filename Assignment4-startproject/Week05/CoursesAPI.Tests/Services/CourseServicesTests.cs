@@ -214,9 +214,18 @@ namespace CoursesAPI.Tests.Services
         }
 
         [TestMethod]
-       // (10%) For each course returned, the name of the main teacher of the course 
-         //   should be included(see the definition of CourseInstanceDTO).
-        public void GetCoursesBySemester_G() { }
+        // (10%) For each course returned, the name of the main teacher of the course 
+        // should be included(see the definition of CourseInstanceDTO).
+        public void GetCoursesBySemester_MainTeacherOfCourseIsIncluded()
+        {
+            //Arrange:
+            const string SEMESTER = "20163";
+
+            //Act:
+            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+
+            //Assert:
+        }
 
 
         public void GetCoursesBySemester_Fallfyrirdannaluser()
