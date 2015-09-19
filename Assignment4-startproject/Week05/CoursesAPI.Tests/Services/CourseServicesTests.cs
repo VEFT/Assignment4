@@ -255,10 +255,18 @@ namespace CoursesAPI.Tests.Services
             var result_2016 = _service.GetCourseInstancesBySemester(SEMESTER_2016);
 
             // Assert:
+            // Assert that the course id's is correct.
             Assert.AreEqual(COURSEID_TGRA_20157, result_2017[0].CourseInstanceID);
-            Assert.AreEqual("", result_2017[0].MainTeacher);
             Assert.AreEqual(COURSEID_VEFT_20163, result_2016[0].CourseInstanceID);
+            // Assert that the main teacher of those two course are the empty string.
+            Assert.AreEqual("", result_2017[0].MainTeacher);
             Assert.AreEqual("", result_2016[0].MainTeacher);
+        }
+
+        [TestMethod]
+        public void GetCoursesBySemester_ble()
+        {
+
         }
 
 		#endregion
