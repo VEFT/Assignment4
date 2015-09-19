@@ -199,10 +199,18 @@ namespace CoursesAPI.Tests.Services
             var result = _service.GetCourseInstancesBySemester(SEMESTER);
 
             // Assert:
+            // Assert that the number of courses are the same.
             Assert.AreEqual(3, result.Count);
+            // Assert that all elements in the result array have the right attributes.
             Assert.AreEqual(COURSEID_VEFT_20153, result[0].CourseInstanceID);
             Assert.AreEqual(COURSE_TEMPLID_VEFT, result[0].TemplateID);
             Assert.AreEqual(COURSE_NAME_VEFT, result[0].Name);
+            Assert.AreEqual(COURSEID_PROG_20153, result[1].CourseInstanceID);
+            Assert.AreEqual(COURSE_TEMPLID_PROG, result[1].TemplateID);
+            Assert.AreEqual(COURSE_NAME_PROG, result[1].Name);
+            Assert.AreEqual(COURSEID_TGRA_20153, result[2].CourseInstanceID);
+            Assert.AreEqual(COURSE_TEMPLID_TGRA, result[2].TemplateID);
+            Assert.AreEqual(COURSE_NAME_TGRA, result[2].Name);
         }
 
         [TestMethod]
