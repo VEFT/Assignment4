@@ -233,15 +233,15 @@ namespace CoursesAPI.Tests.Services
         // should be included(see the definition of CourseInstanceDTO).
         public void GetCoursesBySemester_MainTeacherOfCourseIsIncluded()
         {
-            //Arrange:
+            // Arrange:
             const string SEMESTER = "20153";
 
-            //Act:
+            // Act:
             var result = _service.GetCourseInstancesBySemester(SEMESTER);
             var veft = result[0];
             var tgra = result[2];
 
-            //Assert:
+            // Assert:
             Assert.AreEqual(NAME_DABS, veft.MainTeacher);
             Assert.AreEqual(NAME_GUNNA, tgra.MainTeacher);
         }
@@ -264,12 +264,6 @@ namespace CoursesAPI.Tests.Services
             // Assert that the main teacher of those two course are the empty string.
             Assert.AreEqual("", result_2017[0].MainTeacher);
             Assert.AreEqual("", result_2016[0].MainTeacher);
-        }
-
-        [TestMethod]
-        public void GetCoursesBySemester_ble()
-        {
-
         }
 
 		#endregion

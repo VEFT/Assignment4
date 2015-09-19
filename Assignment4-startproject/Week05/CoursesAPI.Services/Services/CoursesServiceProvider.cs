@@ -99,29 +99,16 @@ namespace CoursesAPI.Services.Services
                               select new { tr, p });
 
             var courses = (from cLQ in coursesLQ
-                            join tRQ in teachersRQ on cLQ.c.ID equals tRQ.tr.CourseInstanceID into gj
-                            from sub in gj.DefaultIfEmpty()
+                            join tRQ in teachersRQ on cLQ.c.ID equals tRQ.tr.CourseInstanceID into ciDTO
+                            from ci in ciDTO.DefaultIfEmpty()
                             select new CourseInstanceDTO
                             {
                                 Name               = cLQ.ct.Name,
                                 TemplateID         = cLQ.ct.CourseID,
                                 CourseInstanceID   = cLQ.c.ID,
-                                MainTeacher        = (sub == null) ? string.Empty : sub.p.Name
+                                MainTeacher        = (ci == null) ? string.Empty : ci.p.Name
                             }).ToList();
 
-            /*
-			var courses = (from c in _courseInstances.All()
-				join ct in _courseTemplates.All() on c.CourseID equals ct.CourseID
-				where c.SemesterID == semester
-				select new CourseInstanceDTO
-				{
-					Name               = ct.Name,
-					TemplateID         = ct.CourseID,
-					CourseInstanceID   = c.ID,
-					MainTeacher        = "" // Hint: it should not always return an empty string!
-				}).ToList();
-
-            */
 			return courses;
 		}
 	}
