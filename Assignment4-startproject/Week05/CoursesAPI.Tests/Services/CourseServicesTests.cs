@@ -47,8 +47,6 @@ namespace CoursesAPI.Tests.Services
 			#region Persons
 			var persons = new List<Person>
 			{
-				// Of course I'm the first person,
-				// did you expect anything else?
 				new Person
 				{
 					ID    = 1,
@@ -153,15 +151,14 @@ namespace CoursesAPI.Tests.Services
 			_mockUnitOfWork.SetRepositoryData(courses);
 			_mockUnitOfWork.SetRepositoryData(_teacherRegistrations);
 
-			// TODO: this would be the correct place to add 
-			// more mock data to the mockUnitOfWork!
-
 			_service = new CoursesServiceProvider(_mockUnitOfWork);
 		}
 
 		#region GetCoursesBySemester
 		/// <summary>
-		/// TODO: implement this test, and several others!
+		/// A test that asserts that when no data is defined, 
+        /// we don't receive any course when we get a course instance
+        /// by some semester and instead returns an empty list.
 		/// </summary>
 		[TestMethod]
 		public void GetCoursesBySemester_ReturnsEmptyListWhenNoDataDefined()
@@ -176,8 +173,13 @@ namespace CoursesAPI.Tests.Services
 
             // Assert:
             Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(false, result.Any());
 		}
 
+        /// <summary>
+        /// A test that asserts that given a semester, we return all
+        /// the appropriate courses (no more, no less).
+        /// </summary>
 		[TestMethod]
         public void GetCoursesBySemester_ReturnsAllCoursesOnAGivenSemester()
         {
@@ -204,6 +206,10 @@ namespace CoursesAPI.Tests.Services
             Assert.AreEqual(COURSE_NAME_VEFT, result2[0].Name);
         }
 
+        /// <summary>
+        /// A test that asserts that when no semester is defined, 
+        /// we return return all courses for the semester 20153.
+        /// </summary>
         [TestMethod]
         public void GetCoursesBySemester_WithNoSemesterDefined()
         {
@@ -228,9 +234,11 @@ namespace CoursesAPI.Tests.Services
             Assert.AreEqual(COURSE_NAME_TGRA, result[2].Name);
         }
 
+        /// <summary>
+        /// A test that asserts that for each course returned,
+        /// the name of the main teacher of the course is included.
+        /// </summary>
         [TestMethod]
-        // (10%) For each course returned, the name of the main teacher of the course 
-        // should be included(see the definition of CourseInstanceDTO).
         public void GetCoursesBySemester_MainTeacherOfCourseIsIncluded()
         {
             // Arrange:
@@ -246,6 +254,10 @@ namespace CoursesAPI.Tests.Services
             Assert.AreEqual(NAME_GUNNA, tgra.MainTeacher);
         }
 
+        /// <summary>
+        /// A test that asserts that if the main teacher hasn't been defined, 
+        /// the name of the main teacher is returned as an empty string.
+        /// </summary>
         [TestMethod]
         public void GetCoursesBySemester_MainTeacherHasNotBeenDefined()
         {
