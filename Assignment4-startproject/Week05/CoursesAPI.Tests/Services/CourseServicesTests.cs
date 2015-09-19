@@ -234,13 +234,16 @@ namespace CoursesAPI.Tests.Services
         public void GetCoursesBySemester_MainTeacherOfCourseIsIncluded()
         {
             //Arrange:
-            const string SEMESTER = "20163";
+            const string SEMESTER = "20153";
 
             //Act:
             var result = _service.GetCourseInstancesBySemester(SEMESTER);
+            var veft = result[0];
+            var tgra = result[2];
 
             //Assert:
-
+            Assert.AreEqual(NAME_DABS, veft.MainTeacher);
+            Assert.AreEqual(NAME_GUNNA, tgra.MainTeacher);
         }
 
         [TestMethod]
