@@ -88,6 +88,28 @@ namespace CoursesAPI.Services.Services
 				semester = "20153";
 			}
 
+            var coursesLQ = (from c in _courseInstances.All()
+                             join ct in _courseTemplates.All() on c.CourseID equals ct.CourseID
+                             where c.SemesterID == semester
+                             select new { c, ct });
+
+            var teachersRQ = (from tr in _teacherRegistrations.All()
+                              join p in _persons.All() on tr.SSN equals p.SSN
+                              where tr.Type == TeacherType.MainTeacher
+                              select new { tr, p });
+
+            var courses = (from cLQ in coursesLQ
+                            join tRQ in teachersRQ on cLQ.c.ID equals tRQ.tr.CourseInstanceID into gj
+                            from sub in gj.DefaultIfEmpty()
+                            select new CourseInstanceDTO
+                            {
+                                Name               = cLQ.ct.Name,
+                                TemplateID         = cLQ.ct.CourseID,
+                                CourseInstanceID   = cLQ.c.ID,
+                                MainTeacher        = (sub == null) ? string.Empty : sub.p.Name
+                            }).ToList();
+
+            /*
 			var courses = (from c in _courseInstances.All()
 				join ct in _courseTemplates.All() on c.CourseID equals ct.CourseID
 				where c.SemesterID == semester
@@ -99,6 +121,7 @@ namespace CoursesAPI.Services.Services
 					MainTeacher        = "" // Hint: it should not always return an empty string!
 				}).ToList();
 
+            */
 			return courses;
 		}
 	}
