@@ -175,7 +175,7 @@ namespace CoursesAPI.Tests.Services
             var result2 = _service.GetCourseInstancesBySemester(SEMESTER2);
 
             // Assert: 
-            // Assert that the function should return all courses
+            // Assert that the function returns all courses
             // on a given semester (no more, no less):
             Assert.AreEqual(3, result1.Count);
             Assert.AreNotEqual(2, result1.Count);
@@ -183,7 +183,7 @@ namespace CoursesAPI.Tests.Services
             Assert.AreEqual(1, result2.Count);
             Assert.AreNotEqual(0, result2.Count);
             Assert.AreNotEqual(2, result2.Count);
-            // Assert that the function actually returns the correct courses
+            // Assert that the function actually returns the correct courses:
             Assert.AreEqual(COURSEID_VEFT_20163, result2[0].CourseInstanceID);
             Assert.AreEqual(COURSE_TEMPLID_VEFT, result2[0].TemplateID);
             Assert.AreEqual(COURSE_NAME_VEFT, result2[0].Name);
@@ -203,6 +203,17 @@ namespace CoursesAPI.Tests.Services
             Assert.AreEqual(COURSEID_VEFT_20153, result[0].CourseInstanceID);
             Assert.AreEqual(COURSE_TEMPLID_VEFT, result[0].TemplateID);
             Assert.AreEqual(COURSE_NAME_VEFT, result[0].Name);
+        }
+
+        [TestMethod]
+       // (10%) For each course returned, the name of the main teacher of the course 
+         //   should be included(see the definition of CourseInstanceDTO).
+        public void GetCoursesBySemester_G() { }
+
+
+        public void GetCoursesBySemester_Fallfyrirdannaluser()
+        {
+
         }
 
 		#endregion
