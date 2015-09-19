@@ -28,7 +28,7 @@ namespace CoursesAPI.Tests.Services
         private const int COURSEID_PROG_20153 = 1555;
         private const int COURSEID_TGRA_20153 = 3333;
         private const int COURSEID_TGRA_20157 = 1733;
-        private const int INVALID_COURSEID    = 9999;
+		private const int INVALID_COURSEID    = 9999;
 
         private const string COURSE_TEMPLID_VEFT = "T-514-VEFT";
         private const string COURSE_TEMPLID_PROG = "T-111-PROG";
@@ -221,9 +221,19 @@ namespace CoursesAPI.Tests.Services
         }
 
         [TestMethod]
-       // (10%) For each course returned, the name of the main teacher of the course 
-         //   should be included(see the definition of CourseInstanceDTO).
-        public void GetCoursesBySemester_G() { }
+        // (10%) For each course returned, the name of the main teacher of the course 
+        // should be included(see the definition of CourseInstanceDTO).
+        public void GetCoursesBySemester_MainTeacherOfCourseIsIncluded()
+        {
+            //Arrange:
+            const string SEMESTER = "20163";
+
+            //Act:
+            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+
+            //Assert:
+
+        }
 
         [TestMethod]
         public void GetCoursesBySemester_MainTeacherHasNotBeenDefined()
