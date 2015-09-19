@@ -250,16 +250,26 @@ namespace CoursesAPI.Tests.Services
         public void GetCoursesBySemester_MainTeacherHasNotBeenDefined()
         {
             // Arrange:
-            const string SEMESTER = "20173";
+            const string SEMESTER_2017 = "20173";
+            const string SEMESTER_2016 = "20163";
 
-            //Act:
-            var result = _service.GetCourseInstancesBySemester(SEMESTER);
+            // Act:
+            var result_2017 = _service.GetCourseInstancesBySemester(SEMESTER_2017);
+            var result_2016 = _service.GetCourseInstancesBySemester(SEMESTER_2016);
 
             // Assert:
-            //System.Console.WriteLine("TEST: " + result[0].CourseInstanceID);
-            //System.Console.WriteLine("TEST2: " + result[0].MainTeacher);
-            //Assert.AreEqual(8, result[0].CourseInstanceID);
-            //Assert.AreEqual("", result[0].MainTeacher);
+            // Assert that the course id's is correct.
+            Assert.AreEqual(COURSEID_TGRA_20157, result_2017[0].CourseInstanceID);
+            Assert.AreEqual(COURSEID_VEFT_20163, result_2016[0].CourseInstanceID);
+            // Assert that the main teacher of those two course are the empty string.
+            Assert.AreEqual("", result_2017[0].MainTeacher);
+            Assert.AreEqual("", result_2016[0].MainTeacher);
+        }
+
+        [TestMethod]
+        public void GetCoursesBySemester_ble()
+        {
+
         }
 
 		#endregion
