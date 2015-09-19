@@ -129,9 +129,13 @@ namespace CoursesAPI.Tests.Services
 		}
 
 		[TestMethod]
-        public void testasdasd1()
+        public void GetCoursesBySemester_ReturnsAllCoursesOnAGivenSemester()
         {
-            // todo
+            // Arrange:
+
+            // Act:
+
+            // Assert: 
         }
 
         [TestMethod]
