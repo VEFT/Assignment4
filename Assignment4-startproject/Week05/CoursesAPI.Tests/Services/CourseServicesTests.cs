@@ -129,20 +129,26 @@ namespace CoursesAPI.Tests.Services
 		}
 
 		[TestMethod]
-        public void test1()
+        public void testasdasd1()
         {
             // todo
         }
 
-		#endregion
+        [TestMethod]
+        public void tesasdasdt1()
+        {
+            // todo
+        }
 
-		#region AddTeacher
+        #endregion
 
-		/// <summary>
-		/// Adds a main teacher to a course which doesn't have a
-		/// main teacher defined already (see test data defined above).
-		/// </summary>
-		[TestMethod]
+        #region AddTeacher
+
+        /// <summary>
+        /// Adds a main teacher to a course which doesn't have a
+        /// main teacher defined already (see test data defined above).
+        /// </summary>
+        [TestMethod]
 		public void AddTeacher_WithValidTeacherAndCourse()
 		{
 			// Arrange:
